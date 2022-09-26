@@ -12,7 +12,7 @@ func main() {
 
 	// GET /api/register
 	app.Get("/api/*", func(c *fiber.Ctx) error {
-		msg := fmt.Sprintf("✋ %s", c.Params("*"))
+		msg := fmt.Sprintf("✋ %s Jatin", c.Params("*"))
 		return c.SendString(msg) // => ✋ register
 	})
 

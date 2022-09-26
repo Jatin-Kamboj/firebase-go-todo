@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  todo_app:
+    container_name: todo_app
+    build: ./client
+    ports:
+      - "8080:80"
+    volumes:
+      - ./my-app:/usr/src/app/my-app
+      - /usr/src/app/my-app/node_modules
+    
+    # environment:
+    #   DD_DB_HOST: db
+    # command: /server
+    # depends_on:
+    #   - todo_db
+  todo_server:
+    container_name: todo_server
+    build: ./server
+    ports:
+      - "3000:3000"
+    volumes:
+       - ./api:/usr/src/app/api
+       - /usr/src/app/api/node_modules
+  # todo_db:
+  #   container_name: todo_db
+  #   image: postgres:14.1-alpine
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_USER: todo_user
+  #     POSTGRES_PASSWORD: todo_password
+  #     POSTGRES_DB: todo
+  #   volumes:
+  #     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
